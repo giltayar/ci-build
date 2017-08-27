@@ -1,0 +1,17 @@
+{
+  "name": "f",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "#",
+    "build": "#"
+  },
+  "dependencies": {
+    "a": "1.0.0",
+    "c": "1.0.0",
+    "e": "1.0.0"
+  },
+  "author": "gil.tay",
+  "license": "ISC"
+}

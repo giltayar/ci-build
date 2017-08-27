@@ -1,0 +1,24 @@
+{
+  "name": "artifactsrc-yml-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "debug": "mocha --debug-brk"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "js-yaml": "^3.7.0",
+    "lodash": "^4.17.2",
+    "parse-author": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "flow-bin": "^0.37.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.6"
+  }
+}

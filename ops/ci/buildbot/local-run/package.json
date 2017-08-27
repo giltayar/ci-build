@@ -1,0 +1,17 @@
+{
+  "name": "local-run",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd ../configuration && npm install && npm test && npm run build && cd ../images && ./build-images.sh",
+    "start": "docker-compose up -d",
+    "logs": "docker-compose logs -f",
+    "reconfig": "npm run build && docker-compose kill buildbot && docker-compose up -d buildbot",
+    "stop": "docker-compose down",
+    "npm-registry": "open http://`docker-compose port npm-registry 4873`/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

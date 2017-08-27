@@ -1,0 +1,12 @@
+{
+  "name": "test-artifact-f",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e 'setTimeout(() => 1, 10000)'",
+    "build": "#"
+  },
+  "author": "gil.tayar@natur",
+  "license": "ISC"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 200000",
+    "debug": "npm test -- --debug-brk=5858",
+    "prepublish": "ln -sF ../../../../../dev/common/javascript/testing-tools/browser-testkit node_modules/browser-testkit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-sdk": "^2.7.17",
+    "bluebird": "^3.4.6",
+    "chai": "^3.5.0",
+    "lodash": "^4.17.2",
+    "mocha": "^3.2.0",
+    "ni-docker-compose-tool": "*",
+    "node-fetch": "^1.6.3",
+    "retry-promise": "^1.0.0",
+    "s3": "^4.4.0"
+  }
+}

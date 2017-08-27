@@ -1,0 +1,13 @@
+{
+  "name": "npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p dist/npm && echo build > dist/npm/build.txt",
+    "test": "echo test > dist/npm/test.txt",
+    "make-assets": "echo make-assets > dist/npm/make-assets.txt"
+  },
+  "author": "Gil Tayar <gil.tayar@naturalint.com>",
+  "license": "ISC"
+}

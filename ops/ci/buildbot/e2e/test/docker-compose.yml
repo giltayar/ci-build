@@ -1,0 +1,146 @@
+version: '2'
+services:
+  buildbot:
+    image: giltayar/buildbot-master-image
+    env_file:
+        - db.env
+    environment:
+        BUILDBOT_WORKER_PORT: 9989
+        BUILDBOT_WEB_PORT: 8080
+        REPOS_TO_BUILD: "http://git:git@git-server:3000/git/test-artifacts.git"
+        GIT_POLL_INTERVAL: 10
+        SMTP_SERVER: smtp
+        SMTP_PORT: 25
+        USE_SMTPS: 0
+    links:
+        - db
+    depends_on:
+        - db
+    ports:
+        - 8080
+    volumes:
+        - ~/.ssh:/root/.ssh:ro
+
+  db:
+    env_file:
+        - db.env
+    image: "postgres:9.4"
+    expose:
+        - 5432
+
+  worker-npm:
+    image: "giltayar/buildbot-worker-npm-image"
+    environment:
+        BUILDMASTER: buildbot
+        BUILDMASTER_PORT: 9989
+        WORKERNAME: build-npm
+        WORKERPASS: pass
+        WORKER_ENVIRONMENT_BLACKLIST: DOCKER_BUILDBOT* BUILDBOT_ENV_* BUILDBOT_1* WORKER_ENVIRONMENT_BLACKLIST
+        defaultDbHosts: mongo-for-tests:27017
+        NPM_USER: npm-user
+        NPM_PASSWORD: npm-user
+        NPM_REGISTRY: http://npm-registry:4873
+        NPM_CONFIG_LOCATION: /home/buildbot/npm-config/.npmrc 
+        S3_ENDPOINT: http://s3:4569/
+        # fake-s3 treats hosts differently than ips. It treats them as buckets, which is not what we want
+        S3_TRANSLATE_HOST_TO_IP: 'true'
+        S3_ACCESS_KEY_ID: stam
+        S3_SECRET_ACCESS_KEY: secret
+    links:
+        - buildbot
+        - mongo-for-tests
+        - npm-registry
+        - s3
+    depends_on: 
+        - npm-registry
+    volumes:
+        - ~/.ssh:/home/buildbot/.ssh:ro
+        - ~/.npmrc:/home/buildbot/npm-config/.npmrc
+
+  mongo-for-tests:
+    image: mongo:3.3
+    expose:
+        - 27017
+
+  worker-docker-npm:
+    image: "giltayar/buildbot-worker-docker-npm-image"
+     # we use root user locally so that it can connect to the docker daemon in the host.
+     # don't do this in production!
+    user: '0'
+    environment:
+        BUILDMASTER: buildbot
+        BUILDMASTER_PORT: 9989
+        WORKERNAME: build-docker-npm
+        WORKERPASS: pass
+        WORKER_ENVIRONMENT_BLACKLIST: DOCKER_BUILDBOT* BUILDBOT_ENV_* BUILDBOT_1* WORKER_ENVIRONMENT_BLACKLIST
+        DOCKER_HOST: unix:///var/run/docker.sock
+        defaultDbHosts: mongo-for-tests:27017
+        NPM_USER: npm-user
+        NPM_PASSWORD: npm-user
+        NPM_REGISTRY: http://npm-registry:4873
+        NPM_CONFIG_LOCATION: /home/buildbot/npm-config/.npmrc 
+        S3_ENDPOINT: http://s3:4569/        
+        # fake-s3 treats hosts differently than ips. It treats them as buckets, which is not what we want
+        S3_TRANSLATE_HOST_TO_IP: 'true'
+        S3_ACCESS_KEY_ID: stam
+        S3_SECRET_ACCESS_KEY: secret
+        # Registry host has to be either empty (if you wish to use the 
+        # Daemon's registry) or a hostname:port ending with a '/'. 
+        # The port in the second case is _not_ optional.
+        # Why localhost - because we're using the host's docker daemon. 
+        # See also the port mapping in 'docker-registry' below 
+        DOCKER_REGISTRY_HOST: localhost:5000/
+    links:
+        - buildbot
+        - mongo-for-tests
+        - npm-registry
+        - s3
+        - docker-registry
+    depends_on: 
+        - npm-registry
+    volumes:
+        - ~/.ssh:/root/.ssh:ro
+        - ~/.npmrc:/home/buildbot/npm-config/.npmrc
+        - /var/run/docker.sock:/var/run/docker.sock
+
+  worker-artifactsrc:
+    image: "giltayar/buildbot-worker-artifactsrc-image"
+    environment:
+        BUILDMASTER: buildbot
+        BUILDMASTER_PORT: 9989
+        WORKERNAME: build-artifactsrc-yml
+        WORKERPASS: pass
+        WORKER_ENVIRONMENT_BLACKLIST: DOCKER_BUILDBOT* BUILDBOT_ENV_* BUILDBOT_1* WORKER_ENVIRONMENT_BLACKLIST
+    links:
+        - buildbot
+    volumes:
+        - ~/.ssh:/home/buildbot/.ssh:ro
+
+  npm-registry:
+    image: strongloop/ephemeral-npm
+    environment:
+        npm_config_registry: https://registry.npmjs.org/
+        NPM_USER: npm-user
+        NPM_PASSWORD: npm-user
+    ports:
+        - 4873
+
+  docker-registry:
+    image: 'registry'
+    ports:
+        # here we're using a specific mappping because worker-docker-npm is using the host's daemon,
+        # and so the host daemon needs to access this registry in a well-known port
+        - 5000:5000
+
+  git-server:
+    image: gogs/gogs
+    ports:
+        - 22
+        - 3000
+    volumes:
+        - ${GIT_SERVER_CONFIG_DIR}:/data
+
+  s3:
+    image: lphoward/fake-s3
+    ports:
+        - 4569

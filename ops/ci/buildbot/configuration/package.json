@@ -1,0 +1,14 @@
+{
+  "name": "buildbot-configuration",
+  "version": "1.0.0",
+  "description": "The buildbot used by NI for CI",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "virtualenv .venv && . .venv/bin/activate && pip install -r requirements.txt",
+    "build": "tar -czvf master.tar.gz master.cfg *.py",
+    "test": "npm run test:unit",
+    "test:unit": ". .venv/bin/activate && python -m unittest tests"
+  },
+  "author": "",
+  "license": "ISC"
+}

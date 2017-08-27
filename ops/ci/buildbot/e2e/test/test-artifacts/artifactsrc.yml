@@ -1,0 +1,59 @@
+
+- artifact: a
+  path: a
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+- artifact: b
+  path: b
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  dependencies:
+    - a
+- artifact: c
+  path: c
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  dependencies:
+    - a
+- artifact: d
+  path: d
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  dependencies:
+    - c
+- artifact: e
+  path: e
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  dependencies:
+    - c
+- artifact: f
+  path: f
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  dependencies:
+    - a
+    - c
+    - e
+- artifact: npm
+  path: npm
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  assets:
+    main:
+      - dist
+- artifact: docker-npm
+  path: docker-npm
+  type: docker-npm
+  owners:
+    - gil.tayar@naturalint.com
+  assets:
+    main:
+      - dist

@@ -1,0 +1,15 @@
+{
+  "name": "e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "#",
+    "build": "#"
+  },
+  "dependencies": {
+    "c": "1.0.0"
+  },
+  "author": "gil.tayar@na",
+  "license": "ISC"
+}

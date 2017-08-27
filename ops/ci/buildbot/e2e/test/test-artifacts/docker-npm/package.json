@@ -1,0 +1,13 @@
+{
+  "name": "docker-npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p dist/docker-npm && echo build > dist/docker-npm/build.txt",
+    "test": "echo test > dist/docker-npm/test.txt",
+    "make-assets": "echo make-assets > dist/docker-npm/make-assets.txt"
+  },
+  "author": "Gil Tayar <gil.tayar@naturalint.com>",
+  "license": "ISC"
+}

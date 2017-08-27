@@ -1,0 +1,6 @@
+assets:
+  main:
+    - dir1
+  sane:
+    - dir2
+    - dir3

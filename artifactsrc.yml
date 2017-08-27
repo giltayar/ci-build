@@ -1,0 +1,74 @@
+
+# random: 0.4869349090510593
+- artifact: article-bos
+  path: dev/umbrella/bos/article-bos 
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+- artifact: article-rts
+  path: dev/umbrella/rts/article-rts
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+- artifact: browser-testkit
+  path: dev/common/javascript/testing-tools/browser-testkit
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+
+- artifact: buildbot-master-image
+  path: ops/ci/buildbot/images/buildbot-master-image
+  type: docker-npm
+- artifact: buildbot-worker-npm-image
+  path: ops/ci/buildbot/images/buildbot-worker-npm-image
+  type: docker-npm
+- artifact: buildbot-worker-docker-npm-image
+  path: ops/ci/buildbot/images/buildbot-worker-docker-npm-image
+  type: docker-npm
+
+- artifact: buildbot-configuration
+  path: ops/ci/buildbot/configuration
+  type: docker-npm
+
+- artifact: test-artifact-a
+  path: ops/ci/test-artifacts/test-artifact-a
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+- artifact: test-artifact-b
+  path: ops/ci/test-artifacts/test-artifact-b
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  dependencies:
+    - test-artifact-a
+- artifact: test-artifact-c
+  path: ops/ci/test-artifacts/test-artifact-c
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  dependencies:
+    - test-artifact-a
+- artifact: test-artifact-d
+  path: ops/ci/test-artifacts/test-artifact-d
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  dependencies:
+    - test-artifact-c
+- artifact: test-artifact-e
+  path: ops/ci/test-artifacts/test-artifact-e
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  dependencies:
+    - test-artifact-c
+- artifact: test-artifact-f
+  path: ops/ci/test-artifacts/test-artifact-f
+  type: npm
+  owners:
+    - gil.tayar@naturalint.com
+  dependencies:
+    - test-artifact-a
+    - test-artifact-c
+    - test-artifact-e

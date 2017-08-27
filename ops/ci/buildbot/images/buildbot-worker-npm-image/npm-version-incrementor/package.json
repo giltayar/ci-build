@@ -1,0 +1,33 @@
+{
+  "name": "ni-npm",
+  "version": "1.0.0",
+  "description": "CI support scripts for npm packages",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "ci",
+    "support",
+    "scripts",
+    "npm"
+  ],
+  "author": "Gil Tayar <gil.tayar@naturalint.com>",
+  "license": "MIT",
+  "bin": {
+    "npm-increment-version": "./scripts/npm-increment-version.js"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "intercept-stdout": "^0.1.2",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.3",
+    "mocha-env-reporter": "latest",
+    "semver": "^5.1.0",
+    "sinon": "^1.17.5"
+  },
+  "dependencies": {
+    "shelljs": "^0.5.3",
+    "lodash": "^4.0.0"
+  }
+}

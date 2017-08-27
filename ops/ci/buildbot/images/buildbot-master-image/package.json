@@ -1,0 +1,15 @@
+{
+  "name": "buildbot-master-image",
+  "version": "1.0.0",
+  "description": "The docker image for NI's buildbot master",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p dist && cp node_modules/buildbot-configuration/master.tar.gz dist/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "buildbot-configuration": "*"
+  }
+}

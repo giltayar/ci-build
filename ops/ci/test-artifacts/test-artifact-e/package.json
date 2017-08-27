@@ -1,0 +1,12 @@
+{
+  "name": "test-artifact-e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "ls lalalal",
+    "build": "#"
+  },
+  "author": "gil.tayar@na",
+  "license": "ISC"
+}
