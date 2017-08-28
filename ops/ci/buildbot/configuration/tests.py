@@ -17,7 +17,7 @@ class TestBuildConfig(unittest.TestCase):
             'repo': 'https://a-repo',
             'artifacts': yaml.load('''
 - artifact: a
-  path: a 
+  path: a
   type: npm
   owners:
     - gil.tayar@naturalint.com
@@ -137,7 +137,7 @@ class TestGit(unittest.TestCase):
     def test_fetch_single_file_from_repo(self):
         self.assertIn('"license": "ISC"',
                       git.fetch_single_file_from_repo(
-                          'git@github.com:Natural-Intelligence/ni-build.git',
+                          'git@github.com:giltayar/ci-build.git',
                           'ops/ci/buildbot/configuration/package.json'))
 
 
@@ -145,4 +145,4 @@ class TestMasterList(unittest.TestCase):
     def test_fetch_repo_artifact_list(self):
         self.assertTrue(any(artifact['path'] == 'dev/umbrella/bos/article-bos' for artifact in
                             repo_artifact_list.fetch_repo_artifact_list(
-                                'git@github.com:Natural-Intelligence/ni-build.git')))
+                                'git@github.com:giltayar/ci-build.git')))

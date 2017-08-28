@@ -1,5 +1,5 @@
 # buildbot-worker-docker-npm
-The docker image for NI's buildbot slave for type:docker-npm projects
+The docker image for buildbot slave for type:docker-npm projects
 
 ## What does it include?
 * based off of the buildbot-worker-npm
@@ -14,5 +14,5 @@ to this:
   thus `-v /var/run/docker.sock:/var/run/docker.sock` (or the equivalent in docker-compose). This is the method
   used by the tests, and makes this docker use the host docker.
 
-To be able to publish to a registry that is not the docker host's repository, 
+To be able to publish to a registry that is not the docker host's repository,
 send it a `DOCKER_REGISTRY_HOST` environment variable.

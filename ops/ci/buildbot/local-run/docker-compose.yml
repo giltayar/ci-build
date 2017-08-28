@@ -8,7 +8,7 @@ services:
         - BUILDBOT_WORKER_PORT=9989
         - BUILDBOT_WEB_URL=http://localhost:8080/
         - BUILDBOT_WEB_PORT=8080
-        - REPOS_TO_BUILD=git@github.com:Natural-Intelligence/ni-build.git
+        - REPOS_TO_BUILD=git@github.com:giltayar/ci-build.git
     links:
         - db
     depends_on:
@@ -42,12 +42,12 @@ services:
         NPM_USER: npm-user
         NPM_PASSWORD: npm-user
         NPM_REGISTRY: http://npm-registry:4873
-        NPM_CONFIG_LOCATION: /home/buildbot/npm-config/.npmrc 
+        NPM_CONFIG_LOCATION: /home/buildbot/npm-config/.npmrc
     links:
         - buildbot
         - mongo-for-tests
         - npm-registry
-    depends_on: 
+    depends_on:
         - npm-registry
     volumes:
         - ~/.ssh:/home/buildbot/.ssh:ro
@@ -78,11 +78,11 @@ services:
         WORKERPASS: pass
         WORKER_ENVIRONMENT_BLACKLIST: DOCKER_BUILDBOT* BUILDBOT_ENV_* BUILDBOT_1* WORKER_ENVIRONMENT_BLACKLIST
         DOCKER_HOST: unix:///var/run/docker.sock
-        # Registry host has to be either empty (if you wish to use the 
-        # Daemon's registry) or a hostname:port ending with a '/'. 
+        # Registry host has to be either empty (if you wish to use the
+        # Daemon's registry) or a hostname:port ending with a '/'.
         # The port in the second case is _not_ optional.
-        # Why localhost - because we're using the host's docker daemon. 
-        # See also the port mapping in 'docker-registry' below 
+        # Why localhost - because we're using the host's docker daemon.
+        # See also the port mapping in 'docker-registry' below
         DOCKER_REGISTRY_HOST: localhost:5000/
     links:
         - buildbot

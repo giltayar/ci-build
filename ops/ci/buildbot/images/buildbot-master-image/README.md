@@ -1,9 +1,9 @@
 # buildbot-master
-The docker image for NI's buildbot master
+The docker image for buildbot master
 
 ## What does it include?
 * based off of the official buildbot-master
-* `master.tag.gz` from `configuration`: it has it because it has a dependency on that package, and the 
+* `master.tag.gz` from `configuration`: it has it because it has a dependency on that package, and the
   `build` script of this copies it from `node_modules`
 * bash and bash-completion (for troubleshooting)
 * git (because it needs to checkout stuff)

@@ -1,7 +1,7 @@
 {
   "name": "buildbot-configuration",
   "version": "1.0.0",
-  "description": "The buildbot used by NI for CI",
+  "description": "The buildbot for CI",
   "main": "index.js",
   "scripts": {
     "prepublish": "virtualenv .venv && . .venv/bin/activate && pip install -r requirements.txt",

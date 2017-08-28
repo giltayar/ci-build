@@ -1,7 +1,7 @@
 {
   "name": "buildbot-worker-npm-image",
   "version": "1.0.0",
-  "description": "The docker image for NI's buildbot slave for type:npm projects",
+  "description": "The docker image for buildbot slave for type:npm projects",
   "main": "index.js",
   "scripts": {
   },

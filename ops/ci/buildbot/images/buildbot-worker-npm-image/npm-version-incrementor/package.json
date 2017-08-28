@@ -1,5 +1,5 @@
 {
-  "name": "ni-npm",
+  "name": "ci-npm",
   "version": "1.0.0",
   "description": "CI support scripts for npm packages",
   "main": "index.js",
